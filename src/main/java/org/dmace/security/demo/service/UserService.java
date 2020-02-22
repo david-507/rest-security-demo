@@ -35,6 +35,7 @@ public class UserService extends BaseService<UserEntity, Long, UserRepo> {
                     .password(encoder.encode(dto.getPassword()))
                     .avatar(dto.getAvatar())
                     .roles(Stream.of(UserRole.USER).collect(Collectors.toSet()))
+                    // Set.of(UserRole.USER); <- java 9 !!
                     .build();
 
             try {
@@ -45,12 +46,6 @@ public class UserService extends BaseService<UserEntity, Long, UserRepo> {
         } else {
             throw new NoMatchingPasswordsException();
         }
-
-//        userEntity.setPassword(encoder.encode(userEntity.getPassword()));
-//        userEntity.setRoles(Stream.of(UserRole.USER).collect(Collectors.toSet()));
-//        // Set.of(UserRole.USER); <- java 9 !!
-//
-//        return save(userEntity);
     }
 
 }
