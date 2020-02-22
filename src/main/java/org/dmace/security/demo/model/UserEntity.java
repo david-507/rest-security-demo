@@ -1,5 +1,6 @@
 package org.dmace.security.demo.model;
 
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -14,7 +15,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+@Builder
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Data
