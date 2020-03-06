@@ -1,7 +1,9 @@
-package org.dmace.security.demo.model;
+package org.dmace.security.demo.model.security;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,10 +17,13 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Builder
 @Entity
+@Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserEntity implements UserDetails {
 
     @Id @GeneratedValue
@@ -30,6 +35,10 @@ public class UserEntity implements UserDetails {
     private String password;
 
     private String avatar;
+
+    private String fullName;
+
+    private String email;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)

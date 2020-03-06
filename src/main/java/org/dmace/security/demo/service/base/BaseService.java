@@ -9,6 +9,7 @@ import java.util.Optional;
 public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> {
 
     @Autowired
+    @SuppressWarnings("all")
     protected R repository;
 
     public T save(T t) {

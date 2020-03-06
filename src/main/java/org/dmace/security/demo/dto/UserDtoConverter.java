@@ -1,7 +1,7 @@
 package org.dmace.security.demo.dto;
 
-import org.dmace.security.demo.model.UserEntity;
-import org.dmace.security.demo.model.UserRole;
+import org.dmace.security.demo.model.security.UserEntity;
+import org.dmace.security.demo.model.security.UserRole;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;

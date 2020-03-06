@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class ApiErrorAttributes extends DefaultErrorAttributes {
@@ -26,16 +27,18 @@ public class ApiErrorAttributes extends DefaultErrorAttributes {
 		String message = "";
 		
 		Throwable throwable = getError(webRequest);
-		
-		if (throwable instanceof ResponseStatusException) {
-			ResponseStatusException responseStatusException = (ResponseStatusException) throwable;
-			message = responseStatusException.getReason() == null ? "" : responseStatusException.getReason();
-		} else {
-			if (throwable.getCause() != null)
-				message = throwable.getCause().getMessage() == null ? throwable.getCause().toString() : throwable.getCause().getMessage();
-			else
-				message = throwable.toString();
+		if(!Objects.isNull(throwable)) {
+			if (throwable instanceof ResponseStatusException) {
+				ResponseStatusException responseStatusException = (ResponseStatusException) throwable;
+				message = responseStatusException.getReason() == null ? "" : responseStatusException.getReason();
+			} else {
+				if (throwable.getCause() != null)
+					message = throwable.getCause().getMessage() == null ? throwable.getCause().toString() : throwable.getCause().getMessage();
+				else
+					message = throwable.toString();
+			}
 		}
+
 		
 		errorAttributes.put("message", message);
 		

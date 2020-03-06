@@ -1,6 +1,6 @@
 package org.dmace.security.demo.repo;
 
-import org.dmace.security.demo.model.UserEntity;
+import org.dmace.security.demo.model.security.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
